@@ -1,0 +1,118 @@
+@import "../../style/mixins";
+@import "../../style/var";
+
+.header_detail {
+  position: relative;
+  height: 15rem;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    @include overlay();
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, $body-bg, rgba($black, 0));
+  }
+}
+
+.movie-detail {
+  position: relative;
+  margin-top: -100px;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    @include breakpoint(lg) {
+      width: 100%;
+    }
+  }
+  &__detail {
+    .container {
+      @include flex(unset, unset, unset);
+    }
+    margin-bottom: 24px;
+  }
+
+  &__poster {
+    flex: 1;
+    padding-left: 15px;
+    transition: transform 0.3s ease;
+    @include breakpoint(md) {
+      transform: translateX(-200%);
+    }
+  }
+  &__info {
+    width: 70%;
+    padding-left: 2rem;
+    transition: width 0.3s ease;
+    @include breakpoint(md) {
+      width: 100%;
+      padding: 0;
+    }
+  }
+  &__title {
+    font-size: 40px;
+  }
+  &__genres {
+    font-size: 14px;
+  }
+  &__overview {
+    width: 80%;
+    line-height: 2;
+  }
+
+  &__video {
+    margin-bottom: 40px;
+    .swiper-button-next,
+    .swiper-button-prev {
+      top: 0;
+      width: 24px;
+      height: 24px;
+      margin: 0;
+      color: $main-color;
+      &::after {
+        font-size: 24px;
+      }
+    }
+    .swiper-button-prev {
+      left: unset;
+      right: 50px;
+    }
+  }
+}
+
+.video {
+  padding: 0 15px;
+  &__title {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+    width: 70%;
+    text-overflow: ellipsis;
+
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  iframe {
+    border: none;
+    outline: none;
+  }
+  &__error {
+    font-size: 30px;
+    color: #4e4d4d;
+  }
+}

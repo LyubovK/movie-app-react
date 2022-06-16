@@ -1,0 +1,64 @@
+@import "../../style/mixins";
+@import "../../style/var";
+
+.header {
+  padding: 15px 15px 0;
+  @include breakpoint(sm) {
+    padding: 15px 0 0;
+  }
+  &__title {
+    text-transform: capitalize;
+    font-size: 56px;
+    transition: all 0.3s ease;
+    @include breakpoint(sm) {
+      margin-bottom: 24px;
+    }
+  }
+  .container {
+    @include flex(flex-end, space-between, unset);
+    @include breakpoint(sm) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    & > div {
+      width: 50%;
+      @include breakpoint(sm) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.catalog {
+  .container {
+    padding: 0 15px 0 75px;
+  }
+  &__movie-list {
+    @include flex(stretch, flex-start, wrap);
+  }
+  &__card {
+    width: 25%;
+    padding: 5px;
+    @include breakpoint(lg) {
+      width: 33%;
+    }
+    @include breakpoint(sm) {
+      width: 50%;
+    }
+    @include breakpoint(xs) {
+      width: 100%;
+    }
+  }
+}
+
+.loader {
+  @include flex(center, center, unset);
+  padding: 24px 0;
+  &__btn {
+    width: 40%;
+    padding: 10px 0;
+    @include breakpoint(sm) {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,154 @@
+@import "../../style/mixins";
+@import "../../style/var";
+
+.movie-genre {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    &__card {
+      width: 25%;
+      margin: 1px 0;
+      padding: 25px;
+    }
+  }
+}
+
+.movie-list {
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+  .swiper-slide {
+    width: 18%;
+    @include breakpoint(lg) {
+      width: 23%;
+    }
+    @include breakpoint(md) {
+      width: 30%;
+    }
+    @include breakpoint(sm) {
+      width: 80%;
+    }
+  }
+  &__link-holder {
+    @include flex(center, unset, unset);
+    padding: 24px;
+  }
+  &__link {
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s ease, border 0.3s ease;
+    @include flex(center, center, unset);
+    & > *::before {
+      font-size: 16px;
+    }
+
+    &:hover {
+      color: $turquoise;
+      border-color: $turquoise;
+    }
+  }
+}
+.tv-list {
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+  .swiper-slide {
+    width: 28%;
+
+    @include breakpoint(lg) {
+      width: 30%;
+    }
+    @include breakpoint(md) {
+      width: 40%;
+    }
+    @include breakpoint(sm) {
+      width: 90%;
+    }
+  }
+  &__link-holder {
+    @include flex(center, unset, unset);
+    padding: 24px;
+  }
+  &__link {
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s ease, border 0.3s ease;
+    @include flex(center, center, unset);
+    & > *::before {
+      font-size: 16px;
+    }
+    &:hover {
+      color: $turquoise;
+      border-color: $turquoise;
+    }
+  }
+}
+
+.similar-list {
+  &__title {
+    font-size: 24px;
+    margin: 24px 0;
+  }
+  .swiper-wrapper {
+    align-items: stretch;
+  }
+  .swiper-slide {
+    width: 18%;
+    @include breakpoint(lg) {
+      width: 23%;
+    }
+    @include breakpoint(md) {
+      width: 30%;
+    }
+    @include breakpoint(sm) {
+      width: 100%;
+    }
+  }
+}
+
+.movie-swiper {
+  .swiper-button-next,
+  .swiper-button-prev {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    height: 100%;
+    margin-top: 0;
+    transition: opacity 0.3s ease;
+    &::after {
+      color: $main-color;
+      font-size: 20px;
+    }
+    &.swiper-button-disabled {
+      opacity: 0;
+    }
+  }
+  .swiper-button-prev {
+    left: 0;
+    padding-left: 30px;
+    justify-content: start;
+    background: rgb(29, 29, 29);
+    background: linear-gradient(
+      90deg,
+      rgba(29, 29, 29, 0.8) 0%,
+      rgba(29, 29, 29, 0) 100%
+    );
+  }
+  .swiper-button-next {
+    right: 0;
+    padding-right: 30px;
+    justify-content: end;
+    background: rgb(29, 29, 29);
+    background: linear-gradient(
+      90deg,
+      rgba(29, 29, 29, 0) 0%,
+      rgba(29, 29, 29, 0.8) 100%
+    );
+  }
+  .swiper-pagination-bullet {
+    background: $main-color;
+    opacity: 0.3;
+    &-active {
+      background: $main-color;
+      opacity: 1;
+    }
+  }
+}

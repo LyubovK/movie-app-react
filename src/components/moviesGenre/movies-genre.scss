@@ -1,0 +1,27 @@
+@import "../../style/mixins";
+@import "../../style/var";
+
+.genre-list {
+  @include flex(unset, flex-start, wrap);
+  padding: 15px 0;
+  &__item {
+    padding: 5px 5px 5px 0;
+  }
+  & > * ~ * {
+    padding-left: 5px;
+  }
+  &__btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid rgba(220, 220, 220, 0.5);
+    padding: 8px 10px;
+    border-radius: 40px;
+    color: $txt-color;
+    outline: none;
+    transition: border 0.3s ease, color 0.3s ease;
+    &:hover {
+      border-color: $pink;
+      color: $pink;
+    }
+  }
+}
