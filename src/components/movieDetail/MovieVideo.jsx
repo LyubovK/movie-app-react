@@ -5,21 +5,16 @@ import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, A11y } from "swiper";
 
+import { getMovieVideos } from "../../api/apiConfig";
+
 const MovieVideo = () => {
   const [item, setItem] = useState([]);
   const { category, id } = useParams();
-  const api_key = "a4999a28333d1147dbac0d104526337a";
   useEffect(() => {
-    const request = async () => {
-      fetch(
-        `https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${api_key}`
-      )
-        .then((resp) => resp.json())
-        .then((data) => {
-          setItem(data.results);
-        });
+    const getFetch = async () => {
+      setItem(await getMovieVideos(category, id));
     };
-    request();
+    getFetch();
   }, [category, id]);
   return (
     <>

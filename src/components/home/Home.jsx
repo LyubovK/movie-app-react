@@ -2,39 +2,23 @@ import React, { useState, useEffect } from "react";
 
 import MoviesList from "../moviesList/MoviesList";
 import HeroSlider from "../heroSlider/HeroSlider";
-import { category } from "../../api/aoiConfig";
+import { category, getTopRated } from "../../api/apiConfig";
 import { Link } from "react-router-dom";
 
-const api_key = "233bf66f6557a07947e7ff65024c45d0";
-const url = "https://api.themoviedb.org/3";
-
-// export const category = {
-//   movie: "movie",
-//   tv: "tv",
-// };
-
 const Home = () => {
-  const [nowPlaying, setNowPlaying] = useState([]);
+  const [topRated, setTopRated] = useState([]);
 
   useEffect(() => {
     const request = async () => {
-      getNowPlaying();
+      setTopRated(await getTopRated());
     };
     request();
   }, []);
 
-  const getNowPlaying = () => {
-    fetch(`${url}/movie/top_rated?api_key=${api_key}`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setNowPlaying(data.results);
-      });
-  };
-
   return (
     <>
       <div>
-        <HeroSlider nowPlaying={nowPlaying} />
+        <HeroSlider topRated={topRated} />
       </div>
       <main className="container-fluid">
         <section className="movie-list">

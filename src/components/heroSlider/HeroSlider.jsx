@@ -1,6 +1,8 @@
 import React from "react";
 import ReactStars from "react-rating-stars-component";
 
+import { Link } from "react-router-dom";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination, A11y } from "swiper";
 import "swiper/css";
@@ -8,22 +10,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import "./hero-slider.scss";
-import { Link } from "react-router-dom";
 
 const HeroSlider = (props) => {
-  const img = "https://image.tmdb.org/t/p/w1280";
-  const heroSlide = props.nowPlaying.slice(0, 5).map((slide, i) => {
-    const bgImg = img + slide.backdrop_path;
+  console.log(props);
+  const heroSlide = props.topRated.slice(0, 5).map((slide, i) => {
     return (
       <SwiperSlide key={i}>
         <div
           className="hero-slider__wrap"
-          style={{ backgroundImage: `url(${bgImg})` }}
+          style={{ backgroundImage: `url(${slide.backPoster})` }}
         >
           <div className="hero-slider__content">
             <ReactStars
               classNames="movie-card__rage"
-              value={slide.vote_average}
+              value={slide.rating}
               count={10}
               edit={false}
               size={20}

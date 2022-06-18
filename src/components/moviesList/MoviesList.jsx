@@ -4,46 +4,31 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, A11y } from "swiper";
 
 import MovieCard from "../movieCard/MovieCard";
-import { category } from "../../api/aoiConfig";
+import { category, getMoviesList, getSimilarList } from "../../api/apiConfig";
 
 import "./movie-list.scss";
-
-const api_key = "233bf66f6557a07947e7ff65024c45d0";
-const url = "https://api.themoviedb.org/3";
 
 const MoviesList = (props) => {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const getFetch = async () => {
+      let data = null;
       if (props.type !== "similar") {
         switch (props.category) {
           case category.movie:
-            getList(category.movie);
+            data = await getMoviesList(category.movie);
             break;
           default:
-            getList(category.tv);
+            data = await getMoviesList(category.tv);
         }
       } else {
-        getSimilar(props.category, props.id);
+        data = await getSimilarList(props.category, props.id);
+        console.log(data);
       }
+      setItems(data.results);
     };
     getFetch();
   }, [props.category, props.id, props.type, props]);
-  const getList = (category) => {
-    fetch(`${url}/${category}/popular?api_key=${api_key}`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setItems(data.results);
-      });
-  };
-
-  const getSimilar = (category, id) => {
-    fetch(`${url}/${category}/${id}/similar?api_key=${api_key}`)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setItems(data.results);
-      });
-  };
 
   const movieList = items.slice(0, 10).map((item, i) => {
     return (

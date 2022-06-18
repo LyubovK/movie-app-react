@@ -4,22 +4,18 @@ import { useParams } from "react-router-dom";
 import "./movie-detail.scss";
 import MovieVideo from "./MovieVideo";
 import MoviesList from "../moviesList/MoviesList";
+import { getMovieDetail } from "../../api/apiConfig";
 
 export function MovieDetail() {
-  const api_key = "a4999a28333d1147dbac0d104526337a";
   const img = "https://image.tmdb.org/t/p/w1280/";
 
   const { category, id } = useParams();
   const [detail, setDetail] = useState([]);
   useEffect(() => {
-    const request = async () => {
-      fetch(`https://api.themoviedb.org/3/${category}/${id}?api_key=${api_key}`)
-        .then((resp) => resp.json())
-        .then((data) => {
-          setDetail(data);
-        });
+    const getFetch = async () => {
+      setDetail(await getMovieDetail(category, id));
     };
-    request();
+    getFetch();
   }, [category, id]);
   const bgImg = img + detail.backdrop_path;
   const poster = img + detail.poster_path;

@@ -3,6 +3,7 @@ import "./movies-genre.scss";
 
 const MoviesGenre = (props) => {
   return (
+    //   <></>
     <ul className="genre-list">
       {props.genres.map((genre, i) => (
         <li className="genre-list__item" key={i}>
